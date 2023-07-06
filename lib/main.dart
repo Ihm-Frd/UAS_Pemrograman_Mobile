@@ -11,9 +11,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,10 +20,26 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Menampilkan API'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Center(child: Text('M.Ilham Firdaus_312010313_Menampilkan API')),
+        ),
+        body: Center(
+          child: Container(
+            margin: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.blue),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Center(child: MyHomePage(title: 'QS.Al-Fatihah')),
+          ),
+        ),
+      ),
     );
   }
 }
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -46,8 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    getData();
     super.initState();
+    getData();
   }
 
   @override
@@ -71,7 +86,8 @@ class _MyHomePageState extends State<MyHomePage> {
         separatorBuilder: (context, index) {
           return Divider();
         },
-        itemCount: listBlog.length,
+        itemCount: listBlog.length ??
+            0, // Menggunakan null check untuk menghindari eror
       ),
     );
   }
